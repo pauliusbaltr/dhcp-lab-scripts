@@ -23,16 +23,16 @@ before running any of them.
   once Option 6 = Kali, Ubuntu loses external DNS and cannot fetch anything. Then
   `python3 -m http.server 8000` and give SET that URL. See `portal-source/README.md`.
 
-### Optional winning attack
+### Optional winning attack (self-paced, not graded)
 
 - `dhcp_starve.py` — bounded, **full-DORA** DHCP starvation: collects *all*
   offers (not just the first) and claims only verified legitimate leases
   (server `.3`, in-pool, real ACK), so it pressures the legitimate pool without
   miscounting the rogue's own offers. Edit `IFACE` and `COUNT` (= legitimate pool
   size). Proves the server handed out those addresses (Observed), not that the
-  pool is empty. Needs Promiscuous Mode = Allow All and the small-pool addressing
-  — see `../../instructor/virtualbox-lab-setup-LT.md` and
-  `../optional/rogue-dhcp-win.md`.
-
-The optional two-server race uses a **different** dnsmasq command (without
-`--dhcp-authoritative`); see `../optional/two-server-race.md`.
+  pool is empty.
+- `optional/rogue-dhcp-win.md` — the full walkthrough for the winning variant
+  (starvation + authoritative rogue). It is **self-contained**: it includes its
+  own one-time VirtualBox setup (small pool + Promiscuous) and restore steps, and
+  uses `dhcp_starve.py` and `rogue-dhcp.sh`. Optional and not graded; do it after
+  the required path.
